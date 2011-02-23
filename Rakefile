@@ -12,6 +12,7 @@ Jeweler::Tasks.new do |gem|
   gem.email = "matteo@matteocollina.com"
   gem.authors = ["Matteo Collina"]
   gem.add_runtime_dependency 'warden', '~> 1.0'
+  gem.add_runtime_dependency 'thor', '~> 0.14.0'
   gem.add_development_dependency 'test_notifier', '~> 0.3.6'
 end
 Jeweler::RubygemsDotOrgTasks.new
