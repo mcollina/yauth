@@ -2,5 +2,6 @@ require 'yaml'
 require 'digest/sha1'
 
 module Yauth
-  autoload :User, "yauth/user"
+  autoload :User, File.join(File.dirname(__FILE__), "yauth", "user")
+  autoload :UserManager, File.join(File.dirname(__FILE__), "yauth", "user_manager")
 end
