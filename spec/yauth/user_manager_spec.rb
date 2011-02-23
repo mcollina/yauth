@@ -9,23 +9,35 @@ describe UserManager do
     end
   end
 
+  def mock_user(name)
+    user = mock "user #{name}"
+    user.stub(:username).and_return(name)
+    user
+  end
+
   it "should add a user" do
-    user = mock "user"
+    user = mock_user "user"
+    subject.add user
+    subject.to_a.should == [user]
+  end
+
+  it "should not add the same user twice" do
+    user = mock_user "user"
+    subject.add user
     subject.add user
     subject.to_a.should == [user]
   end
 
   it "should remove a user given its username" do
-    user = mock "user"
-    user.stub(:username).and_return("name")
+    user = mock_user "name"
     subject.add user
     subject.remove("name").should == user
     subject.to_a.should == []
   end
 
   it "should yield each added user" do 
-    first = mock "first"
-    second = mock "second"
+    first = mock_user "first"
+    second = mock_user "second"
     subject.should_receive(:each).and_yield(first, second)
     subject.add first 
     subject.add second 
@@ -64,26 +76,35 @@ describe UserManager, "as a class" do
 
   it { should respond_to(:load) }
 
-  it "should load from a yaml file if that file exists" do 
-    path = "a/path/to.yml"
-    io = StringIO.new <<-EOF
+  describe "#load" do
+    it "should load from a yaml file if that file exists" do 
+      path = "a/path/to.yml"
+      io = StringIO.new <<-EOF
 - user:
     username: first
     password: 123456
 - user:
     username: second
     password: 789012
-EOF
-    File.stub(:exists?).with(path).and_return(true)
-    UserManager.should_receive(:open).with(path).and_yield(io)
-    manager = UserManager.load(path)
+      EOF
+      File.stub(:exists?).with(path).and_return(true)
+      UserManager.should_receive(:open).with(path).and_yield(io)
+      manager = UserManager.load(path)
 
-    ary = manager.to_a
-    ary.size.should == 2
+      ary = manager.to_a
+      ary.size.should == 2
 
-    ary[0].username.should == "first"
-    ary[0].password.should == 123456
-    ary[1].username.should == "second"
-    ary[1].password.should == 789012
+      ary[0].username.should == "first"
+      ary[0].password.should == 123456
+      ary[1].username.should == "second"
+      ary[1].password.should == 789012
+    end
+
+    it "should create a new UserManager if the file doesn't exists" do 
+      path = "a/path/to.yml"
+      File.stub(:exists?).with(path).and_return(false)
+      manager = UserManager.load(path)
+      manager.to_a.should == []
+    end
   end
 end

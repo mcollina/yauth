@@ -7,6 +7,7 @@ class Yauth::UserManager
   end
 
   def add(user)
+    remove(user.username)
     @list << user
   end
 
@@ -27,6 +28,7 @@ class Yauth::UserManager
 
   def self.load(path)
     manager = UserManager.new
+    return manager unless File.exists? path
     open(path) do |io|
       YAML.load(io).each { |h| manager.add(User.new(h)) }
     end
