@@ -1,1 +1,1 @@
-rvm --create use ruby-1.8.7-p302@form_signature_ipad
+rvm --create use ruby-1.8.7-p302@yauth
