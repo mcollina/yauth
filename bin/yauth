@@ -1,4 +1,5 @@
 #!/usr/bin/env ruby
 require "rubygems" # ruby1.9 doesn't "require" it though
-require File.join(File.dirname(__FILE__), "..", "lib", "yauth")
+$:.unshift File.join(File.dirname(__FILE__), "..", "lib") 
+require "yauth"
 Yauth::CLI.start

@@ -3,7 +3,7 @@ require 'digest/sha1'
 require 'thor'
 
 module Yauth
-  autoload :User, File.join(File.dirname(__FILE__), "yauth", "user")
-  autoload :UserManager, File.join(File.dirname(__FILE__), "yauth", "user_manager")
-  autoload :CLI, File.join(File.dirname(__FILE__), "yauth", "cli")
+  autoload :User, File.join("yauth", "user")
+  autoload :UserManager, File.join("yauth", "user_manager")
+  autoload :CLI, File.join("yauth", "cli")
 end
