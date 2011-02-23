@@ -20,7 +20,7 @@ class Yauth::User
     { "user" => { "username" => username, "password" => password } }
   end
 
-  def to_yaml
-    to_hash.to_yaml
+  def to_yaml(opts={})
+    to_hash.to_yaml(opts)
   end
 end
