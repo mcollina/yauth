@@ -1,0 +1,3 @@
+
+class Yauth::User
+end
