@@ -7,8 +7,8 @@ Jeweler::Tasks.new do |gem|
   gem.name = "yauth"
   gem.homepage = "http://github.com/mcollina/yauth"
   gem.license = "MIT"
-  gem.summary = %Q{A warden strategy for yaml based authentication}
-  gem.description = %Q{TODO: longer description of your gem}
+  gem.summary = %Q{A drop-in authentication solution for prototypes.}
+  gem.description = %Q{Yauth is a extremely simple authentication solution for prototipes, developed as a warden strategy. It uses a yaml file to store usernames and hashed password. It provides a better-than-nothing security.}
   gem.email = "matteo@matteocollina.com"
   gem.authors = ["Matteo Collina"]
   gem.add_runtime_dependency 'warden', '~> 1.0'

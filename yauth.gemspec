@@ -11,7 +11,7 @@ Gem::Specification.new do |s|
   s.authors = ["Matteo Collina"]
   s.date = %q{2011-02-24}
   s.default_executable = %q{yauth}
-  s.description = %q{TODO: longer description of your gem}
+  s.description = %q{Yauth is a extremely simple authentication solution for prototipes, developed as a warden strategy. It uses a yaml file to store usernames and hashed password. It provides a better-than-nothing security.}
   s.email = %q{matteo@matteocollina.com}
   s.executables = ["yauth"]
   s.extra_rdoc_files = [
@@ -42,13 +42,14 @@ Gem::Specification.new do |s|
     "spec/yauth/strategy_spec.rb",
     "spec/yauth/user_manager_spec.rb",
     "spec/yauth/user_spec.rb",
-    "spec/yauth_spec.rb"
+    "spec/yauth_spec.rb",
+    "yauth.gemspec"
   ]
   s.homepage = %q{http://github.com/mcollina/yauth}
   s.licenses = ["MIT"]
   s.require_paths = ["lib"]
   s.rubygems_version = %q{1.3.7}
-  s.summary = %q{A warden strategy for yaml based authentication}
+  s.summary = %q{A drop-in authentication solution for prototypes.}
   s.test_files = [
     "examples/sinatra/app.rb",
     "spec/spec_helper.rb",
