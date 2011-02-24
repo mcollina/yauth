@@ -15,6 +15,7 @@ Jeweler::Tasks.new do |gem|
   gem.add_runtime_dependency 'thor', '~> 0.14.0'
   gem.add_development_dependency 'test_notifier', '~> 0.3.6'
   gem.add_development_dependency 'autotest', '~> 4.4'
+  gem.add_development_dependency 'rcov'
 end
 Jeweler::RubygemsDotOrgTasks.new
 
@@ -27,6 +28,8 @@ end
 RSpec::Core::RakeTask.new(:rcov) do |spec|
   spec.pattern = 'spec/**/*_spec.rb'
   spec.rcov = true
+  spec.rcov_opts = ["--text-summary", "--exclude","lib\/rspec,bin\/rspec,lib\/rcov," + 
+             "spec,diff-lcs,thor,warden,rack"]
 end
 
 task :default => :spec
