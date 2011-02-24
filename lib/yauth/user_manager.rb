@@ -31,7 +31,7 @@ class Yauth::UserManager
 
   def authenticate(username, password)
     user = find_by_username(username)
-    true if user and user.authenticate(password)
+    user if user and user.authenticate(password)
   end
 
   def self.load(path)

@@ -80,7 +80,7 @@ EOF
     subject.should_receive(:find_by_username).with("name").and_return(user)
     user.should_receive(:authenticate).with("password").and_return(true)
 
-    subject.authenticate("name", "password").should be_true
+    subject.authenticate("name", "password").should == user
   end
 
   it "should not authenticate a user if the password doesn't match" do
