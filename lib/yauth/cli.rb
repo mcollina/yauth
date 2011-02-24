@@ -4,7 +4,7 @@ class Yauth::CLI < Thor
   attr_reader :manager
 
   desc "add USERNAME PASSWORD", "Adds or updates a user"
-  method_options :config => "config/users.yml"
+  method_options :config => Yauth.location
   def add(username, password)
     init_manager
     user = Yauth::User.new
@@ -15,7 +15,7 @@ class Yauth::CLI < Thor
   end
 
   desc "rm USERNAME", "Remove a user"
-  method_options :config => "config/users.yml"
+  method_options :config => Yauth.location
   def rm(username)
     init_manager
     manager.remove(username)

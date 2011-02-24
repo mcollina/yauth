@@ -6,4 +6,9 @@ module Yauth
   autoload :User, File.join("yauth", "user")
   autoload :UserManager, File.join("yauth", "user_manager")
   autoload :CLI, File.join("yauth", "cli")
+
+  class << self
+    attr_accessor :location
+  end
+  Yauth.location = "config/users.yml"
 end
