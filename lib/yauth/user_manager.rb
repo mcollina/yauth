@@ -12,8 +12,7 @@ class Yauth::UserManager
   end
 
   def remove(name)
-    user = @list.find { |u| u.username == name }
-    @list.delete(user)
+    @list.delete(find_by_username(name))
   end
 
   def each(&block)
@@ -24,6 +23,15 @@ class Yauth::UserManager
     open(path, "w") do |io|
       io << @list.to_yaml
     end
+  end
+
+  def find_by_username(name)
+    @list.find { |u| u.username == name }
+  end
+
+  def authenticate(username, password)
+    user = find_by_username(username)
+    true if user and user.authenticate(password)
   end
 
   def self.load(path)

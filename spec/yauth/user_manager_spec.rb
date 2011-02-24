@@ -64,6 +64,37 @@ describe UserManager do
     password: "456"
 EOF
   end
+
+  it "should find a user by its username" do
+    first = User.new(:username => "first", :password => "123") 
+    second = User.new(:username => "second", :password => "456") 
+    subject.add(first)
+    subject.add(second)
+
+    subject.find_by_username("first").should == first
+    subject.find_by_username("second").should == second
+  end
+
+  it "should authenticate a user by its username and password" do
+    user = mock "user"
+    subject.should_receive(:find_by_username).with("name").and_return(user)
+    user.should_receive(:authenticate).with("password").and_return(true)
+
+    subject.authenticate("name", "password").should be_true
+  end
+
+  it "should not authenticate a user if the password doesn't match" do
+    user = mock "user"
+    subject.should_receive(:find_by_username).with("name").and_return(user)
+    user.should_receive(:authenticate).with("password").and_return(false)
+
+    subject.authenticate("name", "password").should be_false
+  end
+
+  it "should not authenticate if there is no match" do
+    subject.should_receive(:find_by_username).with("name").and_return(nil)
+    subject.authenticate("name", "password").should be_false
+  end
 end
 
 describe UserManager, "as a class" do

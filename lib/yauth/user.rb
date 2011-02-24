@@ -23,4 +23,9 @@ class Yauth::User
   def to_yaml(opts={})
     to_hash.to_yaml(opts)
   end
+
+  def authenticate(password)
+    return false if password.to_s == "" 
+    Digest::SHA256.hexdigest(password) == self.password
+  end
 end

@@ -40,6 +40,32 @@ user:
 EOF
   end
 
+  it { should respond_to(:authenticate) }
+
+  it "should authenticate with the right password" do
+    subject.username = "XYZ"
+    subject.plain_password = "ABC"
+    subject.authenticate("ABC").should be_true
+  end
+
+  it "should not authenticate with the wrong password" do
+    subject.username = "XYZ"
+    subject.plain_password = "ABC"
+    subject.authenticate("XYZ").should be_false
+  end
+
+  it "should not authenticate with the empty password" do
+    subject.username = "XYZ"
+    subject.plain_password = "ABC"
+    subject.authenticate("").should be_false
+  end
+
+  it "should not authenticate with the nil password" do
+    subject.username = "XYZ"
+    subject.plain_password = "ABC"
+    subject.authenticate(nil).should be_false
+  end
+
   describe "as a class" do
 
     it "should build a user from a prefixed hash with strings" do
