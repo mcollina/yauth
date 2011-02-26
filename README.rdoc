@@ -1,6 +1,63 @@
-= yauth
+= Yauth
 
-Description goes here.
+Yauth is a extremely simple authentication solution for prototypes, and provides a drop-in solution for http basic authentication.
+It uses a yaml file to store usernames and hashed password combined with the http basic authentication. 
+The whole gem provides a better-than-nothing security, and it was designed for small prototypes and internal applications.
+It is interally developed as a https://github.com/hassox/warden strategy, the same library on which the popular Devise is based. 
+
+== Installation
+
+  gem install yauth
+
+== Configuration
+
+Yauth requires almost no configuration, 5 lines of code.
+
+=== Sinatra
+
+In your application.rb, simply put:
+
+  Yauth::Strategy.install!
+  
+  use Warden::Manager do |manager|
+    manager.default_strategies :yauth_users
+    manager.failure_app = Yauth::FailureApp.new
+  end
+
+To require authentication inside an action, simply call:
+
+  get '/' do
+    request.env['warden'].authenticate! # execution stop and auth is required
+    "hello world\n"
+  end
+
+=== Rails 3
+
+In your config/application.rb file put:
+
+  Yauth::Strategy.install!
+  
+  config.middleware.use Warden::Manager do |manager|
+    manager.default_strategies :yauth_users
+    manager.failure_app = Yauth::FailureApp.new
+  end
+
+To require authentication inside an action, add this method to app/controllers/application_controller.rb:
+
+  private
+  def authenticate
+    env['warden'].authenticate!
+  end
+
+Then, you can use the +authenticate+ method as a before filter for every method that requires authentication:
+
+  before_filter :authenticate, :only => :your_method_here
+
+== TODO
+
+Future versions will include:
+* drop-in api key solution, i.e. user might have a key for API prototypation;
+* authentication scopes, as defined in warden.
 
 == Contributing to yauth
  
