@@ -86,7 +86,7 @@ Finally, to remove 'foo' user:
 
   yauth rm foo
 
-== Security Consideration.
+== Security Considerations
 
 Users are stored in the 'config/users.yml' file, with the password stored as SHA256 hash. 
 In this way it's safe to add the 'config/users.yml' to the version control system.
