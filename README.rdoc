@@ -3,9 +3,9 @@
 Yauth is a extremely simple authentication solution for prototypes, and provides a drop-in solution for http basic authentication.
 It uses a yaml file to store usernames and hashed password combined with the http basic authentication. 
 The whole gem provides a better-than-nothing security, and it was designed with small prototypes in mind.
-It is interally developed as a https://github.com/hassox/warden strategy, the same library on which the popular Devise is based. 
+It is entirely developed as a https://github.com/hassox/warden strategy, the same library on which the popular Devise is based. 
 
-Yauth resolve one well defined problem: protecting a web application that is going to be accessed by a few users.
+Yauth resolves one well defined problem: protecting a web application that is going to be accessed by a few users.
 As adding new users requires manual intervention (only launching a command, see below), it's a good choice for single-users web applications or prototypes. In this way you can password-protect your app easily and expose it to your clients on the web.
 
 == Installation
