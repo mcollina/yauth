@@ -40,7 +40,7 @@ In your application.rb, simply put:
   
   use Warden::Manager do |manager|
     manager.default_strategies :yauth_users
-    manager.failure_app = Yauth::FailureApp.new
+    manager.failure_app = Yauth::FailureApp.new("Your Realm")
   end
 
 To require authentication inside an action, simply call:
@@ -58,7 +58,7 @@ In your config/application.rb file put:
   
   config.middleware.use Warden::Manager do |manager|
     manager.default_strategies :yauth_users
-    manager.failure_app = Yauth::FailureApp.new
+    manager.failure_app = Yauth::FailureApp.new("Your Realm")
   end
 
 To require authentication inside an action, add this method to app/controllers/application_controller.rb:
