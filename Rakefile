@@ -30,7 +30,7 @@ RSpec::Core::RakeTask.new(:rcov) do |spec|
   spec.pattern = 'spec/**/*_spec.rb'
   spec.rcov = true
   spec.rcov_opts = ["--text-summary", "--exclude","lib\/rspec,bin\/rspec,lib\/rcov," + 
-             "spec,diff-lcs,thor,warden,rack"]
+             "spec,diff-lcs,thor,warden,rack,bcrypt"]
 end
 
 task :default => :spec
