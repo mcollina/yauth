@@ -1,4 +1,9 @@
 --- 
 - user: 
     username: admin
-    password: 8c6976e5b5410415bde908bd4dee15dfb167a9c873fc4bb8a81f6f2ab448a918
+    password: !str:BCrypt::Password 
+      str: $2a$10$UMR/fB5Jn5oRNe.OV9VicOLrg9BnPyN6Vc3S/noI5LWzfMKK2Zj0q
+      "@checksum": Lrg9BnPyN6Vc3S/noI5LWzfMKK2Zj0q
+      "@cost": 10
+      "@salt": $2a$10$UMR/fB5Jn5oRNe.OV9VicO
+      "@version": !str:BCrypt::Password 2a

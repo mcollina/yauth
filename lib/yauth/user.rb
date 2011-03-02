@@ -1,5 +1,8 @@
 
 class Yauth::User
+
+  include BCrypt
+
   attr_accessor :username, :password
   attr_reader :plain_password
 
@@ -12,7 +15,7 @@ class Yauth::User
   end
 
   def plain_password=(plain_password)
-    self.password = Digest::SHA256.hexdigest(plain_password)
+    self.password = Password.create(plain_password)
     @plain_password = plain_password
   end
   
@@ -26,6 +29,6 @@ class Yauth::User
 
   def authenticate(password)
     return false if password.to_s == "" 
-    Digest::SHA256.hexdigest(password) == self.password
+    self.password == password
   end
 end

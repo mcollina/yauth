@@ -12,9 +12,10 @@ describe User do
 
   it "should set the real password based on the plain password" do
     password = "hello world"
-    hash = Digest::SHA256.hexdigest(password)
+    cyphertext = mock "CypherText"
+    BCrypt::Password.should_receive(:create).and_return(cyphertext)
     subject.plain_password = password
-    subject.password.should == hash
+    subject.password.should == cyphertext
   end
 
   it "should memorize the plain password until the end of the session" do

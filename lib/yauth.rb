@@ -1,7 +1,7 @@
 require 'yaml'
-require 'digest/sha1'
 require 'thor'
 require 'warden'
+require 'bcrypt'
 
 module Yauth
   class << self
