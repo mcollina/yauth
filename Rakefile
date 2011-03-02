@@ -11,7 +11,7 @@ Jeweler::Tasks.new do |gem|
   gem.description = %Q{Yauth is a extremely simple authentication solution for prototipes, developed as a warden strategy. It uses a yaml file to store usernames and hashed password. It provides a better-than-nothing security.}
   gem.email = "matteo@matteocollina.com"
   gem.authors = ["Matteo Collina"]
-  gem.add_runtime_dependency 'bcrypt', '~> 1.0'
+  gem.add_runtime_dependency 'bcrypt', '~> 2.1.4'
   gem.add_runtime_dependency 'warden', '~> 1.0'
   gem.add_runtime_dependency 'thor', '~> 0.14.0'
   gem.add_development_dependency 'test_notifier', '~> 0.3.6'
