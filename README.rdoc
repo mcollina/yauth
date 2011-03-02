@@ -88,7 +88,7 @@ Finally, to remove 'foo' user:
 
 == Security Considerations
 
-Users are stored in the 'config/users.yml' file, with the password stored as SHA256 hash. 
+Users are stored in the 'config/users.yml' file, with the password stored using BCrypt (https://github.com/codahale/bcrypt-ruby). 
 In this way it's safe to add the 'config/users.yml' to the version control system.
 
 You can see an example of the 'config/users.yml' file:
@@ -96,13 +96,26 @@ You can see an example of the 'config/users.yml' file:
   --- 
   - user: 
       username: admin
-      password: 8c6976e5b5410415bde908bd4dee15dfb167a9c873fc4bb8a81f6f2ab448a918
+      password: !str:BCrypt::Password 
+        str: $2a$10$UMR/fB5Jn5oRNe.OV9VicOLrg9BnPyN6Vc3S/noI5LWzfMKK2Zj0q
+        "@checksum": Lrg9BnPyN6Vc3S/noI5LWzfMKK2Zj0q
+        "@cost": 10
+        "@salt": $2a$10$UMR/fB5Jn5oRNe.OV9VicO
+        "@version": !str:BCrypt::Password 2a
 
+== Upgrading from version 0.1 to 0.2
+
+YOU MUST RECREATE your users.yml file when migrating from 0.1 to 0.2, as I changed the encryption function to BCrypt.
+Unfortunately it's pretty cheap to crack a password encrypted inside an hash, as stated in this article: http://codahale.com/how-to-safely-store-a-password. And one of the main goals of this project it's to store passwords securely.
+Beware that it might be slower to compute, but it is much safer with BCrypt.
+
+This has been done thanks to Gabriele Renzi, that has pointed me in the right direction.
 
 == TODO
 
 Future versions will include:
 * drop-in api key solution, i.e. user might have a key for API prototypation;
+* hash function independence;
 * authentication scopes, as defined in warden.
 
 == Contributing to yauth
